@@ -1,12 +1,20 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React from 'react';
+import Sidebar from '@/components/layout/Sidebar';
+import ChatContainer from '@/components/chat/ChatContainer';
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
+    <div className="flex h-screen w-full overflow-hidden">
+      <Sidebar />
+      
+      <main className="flex-1 flex flex-col h-full">
+        <div className="border-b border-border py-2 px-4">
+          <h2 className="text-lg font-medium">Introduction to DeepGPT</h2>
+        </div>
+        
+        <ChatContainer />
+      </main>
     </div>
   );
 };

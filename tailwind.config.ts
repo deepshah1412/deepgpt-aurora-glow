@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -52,6 +53,18 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				deepgpt: {
+					50: '#F2F0FF',
+					100: '#E5DEFF',
+					200: '#D6BCFA',
+					300: '#B197FC',
+					400: '#9B87F5',
+					500: '#8B5CF6',
+					600: '#7E69AB',
+					700: '#6E59A5',
+					800: '#1A1F2C',
+					900: '#0F172A',
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -84,11 +97,29 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'fade-in': {
+					from: {
+						opacity: '0'
+					},
+					to: {
+						opacity: '1'
+					}
+				},
+				'pulse-glow': {
+					'0%, 100%': {
+						boxShadow: '0 0 0 0 rgba(139, 92, 246, 0.4)'
+					},
+					'50%': {
+						boxShadow: '0 0 15px 2px rgba(139, 92, 246, 0.4)'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.3s ease-in-out',
+				'pulse-glow': 'pulse-glow 2s infinite ease-in-out'
 			}
 		}
 	},
