@@ -13,7 +13,11 @@ const Index = () => {
           <h2 className="text-lg font-medium">Introduction to DeepGPT</h2>
         </div>
         
-        <ChatContainer />
+        <div className="w-full flex justify-center flex-1 bg-muted">
+          <div className="max-w-3xl w-full flex flex-col flex-1">
+            <ChatContainer />
+          </div>
+      </div>
       </main>
     </div>
   );

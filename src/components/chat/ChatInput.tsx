@@ -36,6 +36,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, disabled = false }
 
   return (
     <form 
+    
       onSubmit={handleSubmit}
       className="border border-border bg-background rounded-lg shadow-sm flex items-end p-2"
     >

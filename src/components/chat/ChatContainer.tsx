@@ -29,32 +29,43 @@ const ChatContainer: React.FC = () => {
       content,
       timestamp: new Date()
     };
-    
+  
     setMessages(prev => [...prev, userMessage]);
     setIsLoading(true);
-    
-    // Simulate API delay
-    setTimeout(() => {
-      // Demo responses - in a real app this would come from an API
-      const responses = [
-        "I understand your query. Let me think about that for a moment...",
-        "That's an interesting question! Based on my knowledge, I can provide some insights.",
-        "Thanks for sharing. Here's what I can tell you about that topic.",
-        "I've analyzed your request and have some information that might help.",
-        "Great question! Here's my perspective on that matter."
-      ];
-      
-      const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-      
+  
+    try {
+      // Make API call to Flask
+      const response = await fetch("http://127.0.0.1:5000/mcp_client", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ question: content })
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to get response from server.");
+      }
+  
+      const data = await response.json();
       const aiMessage: ChatMessageProps = {
         role: 'ai',
-        content: randomResponse,
+        content: data.answer || "I'm sorry, I couldn't understand that.",
         timestamp: new Date()
       };
-      
+  
       setMessages(prev => [...prev, aiMessage]);
+    } catch (error) {
+      console.error("Error:", error);
+      const aiMessage: ChatMessageProps = {
+        role: 'ai',
+        content: "There was an error processing your request. Please try again.",
+        timestamp: new Date()
+      };
+      setMessages(prev => [...prev, aiMessage]);
+    } finally {
       setIsLoading(false);
-    }, 1500);
+    }
   };
 
   return (
